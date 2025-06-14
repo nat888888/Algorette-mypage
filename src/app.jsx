@@ -196,12 +196,12 @@ function App() {
             <div className="text-center content-wrapper">
                 <h2 className="text-5xl md:text-7xl mb-12 font-display text-gray-700">What I Love</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-8 text-2xl md:text-3xl">
-                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-music">Music</div>
-                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-travel">Travel</div>
-                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-dance">Dance</div>
-                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-programming">Programming</div>
-                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-research">Research</div>
-                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-kdrama">K-Drama</div>
+                    <div className="bubble w-32 h-32 md:w-40 md:h-40 hub-item" data-scroll-to="#scene-music">Music</div>
+                    <div className="bubble w-32 h-32 md:w-40 md:h-40 hub-item" data-scroll-to="#scene-travel">Travel</div>
+                    <div className="bubble w-32 h-32 md:w-40 md:h-40 hub-item" data-scroll-to="#scene-dance">Dance</div>
+                    <div className="bubble w-32 h-32 md:w-40 md:h-40 hub-item" data-scroll-to="#scene-programming">Programming</div>
+                    <div className="bubble w-32 h-32 md:w-40 md:h-40 hub-item" data-scroll-to="#scene-research">Research</div>
+                    <div className="bubble w-32 h-32 md:w-40 md:h-40 hub-item" data-scroll-to="#scene-kdrama">K-Drama</div>
                 </div>
             </div>
         </section>

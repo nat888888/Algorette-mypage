@@ -1,68 +1,161 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* Tailwind CSS (Viteプロジェクトでは通常ここに@tailwindディレクティブを記述します) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* Custom fonts */
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #F0F8FF;
+    overscroll-behavior: none;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, .font-display {
+    font-family: 'Playfair Display', serif;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Full-screen sections */
+.scene {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Specific scene backgrounds */
+#scene-welcome { background-color: #0c1445; }
+#scene-hub { 
+    background: linear-gradient(135deg, #87CEEB, #B2FFFF, #87CEFA, #ADD8E6);
+    background-size: 400% 400%;
+    animation: gradient-animation 30s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#scene-music { background-color: #FFF8E1; }
+#scene-travel, #scene-dance { background-color: #E0F2F1; }
+#scene-programming, #scene-research { background-color: #F5F5F5; }
+#scene-kdrama { background-color: #FFF0F5; }
+
+#scene-contact {
+    background: linear-gradient(135deg, #FFDAB9, #FFA07A, #FF7F50, #FF8C69);
+    background-size: 400% 400%;
+    animation: sunset-animation 25s ease infinite;
+}
+
+@keyframes sunset-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Hub navigation items styling */
+.hub-item {
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+.hub-item:hover {
+    transform: scale(1.1);
+    color: #FF6347;
+}
+
+.content-wrapper {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.horizontal-gallery {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    perspective: 1000px;
+}
+.horizontal-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-item {
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.08) rotate(2deg);
+}
+
+.gallery-item:hover .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#lightbox {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none; /* Controlled by React state */
+    justify-content: center;
+    align-items: center;
+}
+#lightbox-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    height: 0;
+    padding-bottom: 50.625%;
+}
+#lightbox-content iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
 }

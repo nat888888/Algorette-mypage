@@ -208,11 +208,53 @@ function App() {
 
         {/* SCENE 3-1: MUSIC */}
         <section id="scene-music" className="scene">
-            <div className="w-full max-w-4xl p-8 content-wrapper">
+            <div className="w-full max-w-7xl p-8 content-wrapper">
                 <h2 className="text-5xl md:text-7xl text-center mb-8 font-display text-amber-800">Music</h2>
-                <iframe title="Spotify Playlist" style={{borderRadius: '12px'}} src="https://open.spotify.com/embed/playlist/6ftUDLED1Weex8bV1a3wlX?utm_source=generator" width="100%" height="380" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="playlist-container">
+                        <h3 className="text-2xl font-bold mb-4 text-center text-amber-700">K-POP</h3>
+                        <iframe 
+                            title="K-POP Playlist" 
+                            style={{borderRadius: '12px'}} 
+                            src="https://open.spotify.com/embed/playlist/6ftUDLED1Weex8bV1a3wlX?utm_source=generator" 
+                            width="100%" 
+                            height="380" 
+                            frameBorder="0" 
+                            allowFullScreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                    <div className="playlist-container">
+                        <h3 className="text-2xl font-bold mb-4 text-center text-amber-700">J-POP</h3>
+                        <iframe 
+                            title="J-POP Playlist" 
+                            style={{borderRadius: '12px'}} 
+                            src="https://open.spotify.com/embed/playlist/6ftUDLED1Weex8bV1a3wlX?utm_source=generator" 
+                            width="100%" 
+                            height="380" 
+                            frameBorder="0" 
+                            allowFullScreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                    <div className="playlist-container">
+                        <h3 className="text-2xl font-bold mb-4 text-center text-amber-700">Classical</h3>
+                        <iframe 
+                            title="Classical Playlist" 
+                            style={{borderRadius: '12px'}} 
+                            src="https://open.spotify.com/embed/playlist/6ftUDLED1Weex8bV1a3wlX?utm_source=generator" 
+                            width="100%" 
+                            height="380" 
+                            frameBorder="0" 
+                            allowFullScreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                </div>
             </div>
-             
         </section>
 
         {/* SCENE 3-2: TRAVEL */}

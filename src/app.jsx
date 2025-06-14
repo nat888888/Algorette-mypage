@@ -7,6 +7,24 @@ function App() {
   const [isLightboxOpen, setLightboxOpen] = useState(false);
   const [youtubeVideoId, setYoutubeVideoId] = useState('');
 
+  // 星の位置を生成する関数
+  const generateStars = () => {
+    const stars = [];
+    for (let i = 0; i < 50; i++) {
+      stars.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 3 + 1,
+        duration: Math.random() * 3 + 3,
+        delay: Math.random() * 3
+      });
+    }
+    return stars;
+  };
+
+  const [stars] = useState(generateStars());
+
   // YouTube動画のポップアップを開く関数
   const openLightbox = (youtubeId) => {
     setYoutubeVideoId(youtubeId);
@@ -32,6 +50,44 @@ function App() {
           // --- Welcome Scene Animation ---
           gsap.to("#welcome-name", { duration: 1, opacity: 1, delay: 0.5, y: -20 });
           gsap.to("#welcome-title", { duration: 1, opacity: 1, delay: 0.8, y: -20 });
+
+          // 背景色のアニメーション
+          gsap.to("#scene-welcome", {
+            scrollTrigger: {
+              trigger: "#scene-welcome",
+              start: "top top",
+              end: "bottom top",
+              scrub: 1,
+            },
+            backgroundColor: "#E0FFFF", // 薄い水色
+            ease: "none"
+          });
+
+          // テキストのフェードアウトアニメーション
+          gsap.to(".welcome-text", {
+            scrollTrigger: {
+              trigger: "#scene-welcome",
+              start: "top top",
+              end: "center top",
+              scrub: 1,
+            },
+            opacity: 0,
+            y: -50,
+            ease: "none"
+          });
+
+          // スクロールインジケーターのフェードアウトアニメーション
+          gsap.to(".scroll-indicator", {
+            scrollTrigger: {
+              trigger: "#scene-welcome",
+              start: "top top",
+              end: "bottom top",
+              scrub: 1,
+            },
+            opacity: 0,
+            y: 20,
+            ease: "none"
+          });
 
           // --- Navigation Hub Logic ---
           const hubItems = document.querySelectorAll(".hub-item");
@@ -107,12 +163,27 @@ function App() {
     <>
       <main>
         {/* SCENE 1: WELCOME */}
-        <section id="scene-welcome" className="scene">
-            <div className="text-center text-white">
-                <h1 id="welcome-name" className="text-5xl md:text-8xl font-display opacity-0">Natsuha Tabuchi</h1>
+        <section id="scene-welcome" className="scene relative">
+            <div className="stars-container absolute inset-0">
+              {stars.map((star) => (
+                <div
+                  key={star.id}
+                  className="star absolute"
+                  style={{
+                    left: `${star.x}%`,
+                    top: `${star.y}%`,
+                    width: `${star.size}px`,
+                    height: `${star.size}px`,
+                    animation: `twinkle ${star.duration}s ease-in-out ${star.delay}s infinite`
+                  }}
+                />
+              ))}
+            </div>
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10 welcome-text">
+                <h1 id="welcome-name" className="text-5xl md:text-8xl font-display opacity-0 whitespace-nowrap">Natsuha Tabuchi</h1>
                 <p id="welcome-title" className="text-xl md:text-3xl mt-4 opacity-0">Scientist & Hehe</p>
             </div>
-            <div className="absolute bottom-10 text-white text-lg animate-bounce">
+            <div className="fixed bottom-[10%] left-1/2 transform -translate-x-1/2 text-white text-lg animate-bounce scroll-indicator">
                 <p>SCROLL</p>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
@@ -125,12 +196,12 @@ function App() {
             <div className="text-center content-wrapper">
                 <h2 className="text-5xl md:text-7xl mb-12 font-display text-gray-700">What I Love</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-8 text-2xl md:text-3xl">
-                    <div className="hub-item" data-scroll-to="#scene-music">Music</div>
-                    <div className="hub-item" data-scroll-to="#scene-travel">Travel</div>
-                    <div className="hub-item" data-scroll-to="#scene-dance">Dance</div>
-                    <div className="hub-item" data-scroll-to="#scene-programming">Programming</div>
-                    <div className="hub-item" data-scroll-to="#scene-research">Research</div>
-                    <div className="hub-item" data-scroll-to="#scene-kdrama">K-Drama</div>
+                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-music">Music</div>
+                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-travel">Travel</div>
+                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-dance">Dance</div>
+                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-programming">Programming</div>
+                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-research">Research</div>
+                    <div className="hub-item bubble w-32 h-32 md:w-40 md:h-40" data-scroll-to="#scene-kdrama">K-Drama</div>
                 </div>
             </div>
         </section>

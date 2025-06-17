@@ -227,6 +227,25 @@ function App() {
             </div>
         </section>
 
+        {/* シーン間の雲 */}
+        <div className="clouds-container">
+          <div className="cloud cloud-1"></div>
+          <div className="cloud cloud-2"></div>
+          <div className="cloud cloud-3"></div>
+          <div className="cloud cloud-4"></div>
+          <div className="cloud cloud-5"></div>
+          <div className="cloud cloud-6"></div>
+          <div className="cloud cloud-7"></div>
+          <div className="cloud cloud-8"></div>
+          <div className="cloud cloud-9"></div>
+          <div className="cloud cloud-10"></div>
+          <div className="cloud cloud-11"></div>
+          <div className="cloud cloud-12"></div>
+          <div className="cloud cloud-13"></div>
+          <div className="cloud cloud-14"></div>
+          <div className="cloud cloud-15"></div>
+        </div>
+
         {/* SCENE 2: NAVIGATION HUB */}
         <section id="scene-hub" className="scene">
             <div className="text-center content-wrapper">
